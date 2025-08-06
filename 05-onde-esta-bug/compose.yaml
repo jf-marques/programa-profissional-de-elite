@@ -1,0 +1,31 @@
+services:
+  postgre:
+    image: postgres:13.16
+    restart: always
+    environment:
+      POSTGRES_USER: fakeshop
+      POSTGRES_DB: ecommerce
+      POSTGRES_PASSWORD: Pg1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgre_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # linha adicionada para criar tabela
+
+  ecommerce: # A indentação do serviço foi corrigida
+    image: fabricioveronez/fake-shop
+    restart: always
+    environment:
+      DB_HOST: postgre
+      DB_USER: fakeshop
+      DB_PASSWORD: Pg1234
+      DB_NAME: ecommerce
+      DB_PORT: "5432"
+      FLASK_APP: index.py
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgre
+
+volumes:
+  postgre_data:

@@ -1,0 +1,47 @@
+in connect
+ecommerce-1  | 2025-08-06T21:31:16.379394155Z     return self.loaded_dbapi.connect(*cargs, **cparams)
+ecommerce-1  | 2025-08-06T21:31:16.379400540Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ecommerce-1  | 2025-08-06T21:31:16.379406894Z   File "/usr/local/lib/python3.11/site-packages/psycopg/connection.py", line 119, in connect
+ecommerce-1  | 2025-08-06T21:31:16.379413342Z     raise last_ex.with_traceback(None)
+ecommerce-1  | 2025-08-06T21:31:16.379419476Z sqlalchemy.exc.OperationalError: (psycopg.OperationalError) connection failed: password authentication failed for user "fakeshop"
+ecommerce-1  | 2025-08-06T21:31:16.379426206Z (Background on this error at: https://sqlalche.me/e/20/e3q8)
+ecommerce-1  | 2025-08-06T21:31:46.868920921Z [2025-08-06 21:31:46 +0000] [10] [CRITICAL] WORKER TIMEOUT (pid:11)
+ecommerce-1  | 2025-08-06T21:31:46.876198333Z [2025-08-06 21:31:46 +0000] [11] [INFO] Worker exiting (pid: 11)
+ecommerce-1  | 2025-08-06T21:31:47.321370591Z [2025-08-06 21:31:47 +0000] [10] [ERROR] Worker (pid:11) exited with code 1
+ecommerce-1  | 2025-08-06T21:31:47.321427836Z [2025-08-06 21:31:47 +0000] [10] [ERROR] Worker (pid:11) exited with code 1.
+ecommerce-1  | 2025-08-06T21:31:47.331644569Z [2025-08-06 21:31:47 +0000] [14] [INFO] Booting worker with pid: 14
+
+
+Erro tabela:
+
+ecommerce-1  | 2025-08-06T23:00:20.362104542Z            ^^^^^
+ecommerce-1  | 2025-08-06T23:00:20.362109314Z   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 483, in _execute_on_connection
+ecommerce-1  | 2025-08-06T23:00:20.362114401Z     return connection._execute_clauseelement(
+ecommerce-1  | 2025-08-06T23:00:20.362119215Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ecommerce-1  | 2025-08-06T23:00:20.362124029Z   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1635, in _execute_clauseelement
+ecommerce-1  | 2025-08-06T23:00:20.362129095Z     ret = self._execute_context(
+ecommerce-1  | 2025-08-06T23:00:20.362133877Z           ^^^^^^^^^^^^^^^^^^^^^^
+ecommerce-1  | 2025-08-06T23:00:20.362138565Z   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+ecommerce-1  | 2025-08-06T23:00:20.362143610Z     return self._exec_single_context(
+ecommerce-1  | 2025-08-06T23:00:20.362148455Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ecommerce-1  | 2025-08-06T23:00:20.362153196Z   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1984, in _exec_single_context
+ecommerce-1  | 2025-08-06T23:00:20.362158251Z     self._handle_dbapi_exception(
+ecommerce-1  | 2025-08-06T23:00:20.362163023Z   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2339, in _handle_dbapi_exception
+ecommerce-1  | 2025-08-06T23:00:20.362168058Z     raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+ecommerce-1  | 2025-08-06T23:00:20.362172945Z   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1965, in _exec_single_context
+ecommerce-1  | 2025-08-06T23:00:20.362177980Z     self.dialect.do_execute(
+ecommerce-1  | 2025-08-06T23:00:20.362182730Z   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 921, in do_execute
+ecommerce-1  | 2025-08-06T23:00:20.362187828Z     cursor.execute(statement, parameters)
+ecommerce-1  | 2025-08-06T23:00:20.362202942Z   File "/usr/local/lib/python3.11/site-packages/psycopg/cursor.py", line 97, in execute
+ecommerce-1  | 2025-08-06T23:00:20.362208029Z     raise ex.with_traceback(None)
+ecommerce-1  | 2025-08-06T23:00:20.362212864Z sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedTable) relation "products" does not exist
+ecommerce-1  | 2025-08-06T23:00:20.362218561Z LINE 2: FROM products
+ecommerce-1  | 2025-08-06T23:00:20.362223501Z              ^
+ecommerce-1  | 2025-08-06T23:00:20.362228483Z [SQL: SELECT products.id AS products_id, products.name AS products_name, products.price AS products_price, products.description AS products_description, products.short_description AS products_short_description, products.image AS products_image 
+ecommerce-1  | 2025-08-06T23:00:20.362234022Z FROM products]
+ecommerce-1  | 2025-08-06T23:00:20.362238952Z (Background on this error at: https://sqlalche.me/e/20/f405)
+ecommerce-1  | 2025-08-06T23:00:50.754284855Z [2025-08-06 23:00:50 +0000] [10] [CRITICAL] WORKER TIMEOUT (pid:11)
+ecommerce-1  | 2025-08-06T23:00:50.757413031Z [2025-08-06 23:00:50 +0000] [11] [INFO] Worker exiting (pid: 11)
+ecommerce-1  | 2025-08-06T23:00:51.146291245Z [2025-08-06 23:00:51 +0000] [10] [ERROR] Worker (pid:11) exited with code 1
+ecommerce-1  | 2025-08-06T23:00:51.146351638Z [2025-08-06 23:00:51 +0000] [10] [ERROR] Worker (pid:11) exited with code 1.
+ecommerce-1  | 2025-08-06T23:00:51.154427905Z [2025-08-06 23:00:51 +0000] [14] [INFO] Booting worker with pid: 14
