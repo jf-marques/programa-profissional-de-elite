@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:15
+    container_name: rota42-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: postgresdb
+      POSTGRES_USER: postgresuser
+      POSTGRES_PASSWORD: GKJhkg9876
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+  db_explorer:
+    image: dpage/pgadmin4
+    container_name: rota42-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@rota42.com
+      PGADMIN_DEFAULT_PASSWORD: GKJhkg9876
+    ports:
+      - "8080:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      - db
+
+volumes:
+  pg-data:
+  pgadmin-data:
