@@ -1,0 +1,31 @@
+services:
+  postgre:
+    image: postgres:13.16
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    volumes:
+      - postgre_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  ecommerce:
+    image: fabricioveronez/fake-shop
+    restart: always
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_NAME: ${POSTGRES_DB}
+      DB_PORT: "${DB_PORT}"
+      FLASK_APP: index.py
+    ports:
+      - "${APP_PORT}:5000"
+    depends_on:
+      - postgre
+
+volumes:
+  postgre_data:
