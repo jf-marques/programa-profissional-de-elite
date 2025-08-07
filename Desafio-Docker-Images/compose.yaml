@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  web:
+    # O comando 'build: .' informa ao Docker Compose para construir a imagem
+    # a partir do Dockerfile que está no diretório atual.
+    build: .
+    # Mapeia a porta 8080 da máquina local para a porta 80 do container.
+    # Assim, a página estará acessível em http://localhost:8080.
+    ports:
+      - "8080:80"
+    # Adiciona um nome ao container para facilitar a identificação.
+    container_name: pagina-institucional-nginx
