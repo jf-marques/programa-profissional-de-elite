@@ -1,0 +1,11 @@
+services:
+  converter:
+    build:
+      context: .
+    # Removido o volume que estava sobrescrevendo o binário
+    # - .:/app ← REMOVIDO
+    volumes:
+      - ./video.mp4:/app/video.mp4
+      - ./output.avi:/app/output.avi
+    entrypoint: ["./app"]
+    command: ["video.mp4", "avi"]
